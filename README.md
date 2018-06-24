@@ -1,5 +1,5 @@
 # NodeNewestReleases
-## An API to facilitate getting newest DVD and TV show releases.
+## An API to facilitate getting newest DVD and TV show releases from TheMovieDB.
 
 The API is asynchronous so make sure you keep that in mind when applying it
 to your project. The reason for that is because The MovieDB has a request limiter on their 
