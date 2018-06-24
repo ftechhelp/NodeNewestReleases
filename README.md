@@ -21,7 +21,7 @@ var getNewestTVShows = async () => {
 }
 
 var getNewestDVDReleases = async () => {
-    var DVDMoviesArray = api.getNewestDVDReleases(theMovieDBAPIKey);
+    var DVDMoviesArray = await api.getNewestDVDReleases(theMovieDBAPIKey);
     
     //use the data
 }
