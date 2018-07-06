@@ -1,7 +1,7 @@
 var exports = module.exports = {};
-const _mdb = require('moviedb-promise');
 const TimeSaver = require('./TimeSaver');
 const MovieorTV = require('./PhysicalMedia');
+const movieOrTVShowBaseImagePath = "https://image.tmdb.org/t/p/w300";
 
 exports.retreiveDVDsWithPhysicalCopies = async (MovieDB, pageResults, withOriginalLanguage) => {
 
@@ -37,6 +37,12 @@ exports.retreiveDVDsWithPhysicalCopies = async (MovieDB, pageResults, withOrigin
                     physicalMedia.releaseYear = movie.release_date.split('-')[0];
                     physicalMedia.description = movie.overview;
 
+                    var typesOfImages = await MovieDB.movieImages(movieId);
+
+                    if (typesOfImages.posters[0] =! undefined)
+                        physicalMedia.pathLink = movieOrTVShowBaseImagePath + typesOfImages.posters[0].file_path;
+                        
+
                     if (!movies.includes(physicalMedia))
                         movies.push(physicalMedia);
 
@@ -71,6 +77,11 @@ exports.retreiveTV = async (MovieDB, results, withOriginalLanguage) => {
         physicalMedia.releaseDate = tv.first_air_date;
         physicalMedia.releaseYear = tv.first_air_date.split('-')[0];
         physicalMedia.description = tv.overview;
+
+        var typesOfImages = await MovieDB.tvImages(tvId);
+
+        if (typesOfImages.posters[0] != undefined)
+            physicalMedia.pathLink = movieOrTVShowBaseImagePath + typesOfImages.posters[0].file_path;
 
         if (!tvShows.includes(physicalMedia))
             tvShows.push(physicalMedia);
