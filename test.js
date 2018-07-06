@@ -1,5 +1,5 @@
 var api = require("./NewestReleasesAPI");
-var theMovieDBAPIKey = "ed8d0e0ff54f92da744bd726f5516574";
+var theMovieDBAPIKey = "";
 
 var test = async () => {
     var res = await api.getNewestTVShows(theMovieDBAPIKey);
